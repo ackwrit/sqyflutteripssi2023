@@ -12,6 +12,7 @@ class MyUser {
   DateTime? birthday;
   String? avatar;
   Gender genre = Gender.indefini;
+  List? favoris;
 
 
 
@@ -35,6 +36,7 @@ class MyUser {
     nom = map["NOM"];
     prenom = map["PRENOM"];
     String? provisoirePseudo =  map["PSEUDO"];
+    favoris = map["FAVORIS"] ?? [];
     if(provisoirePseudo == null){
       pseudo = "";
     }
@@ -42,7 +44,16 @@ class MyUser {
       {
         pseudo = provisoirePseudo;
       }
-    birthday = map["BIRTHDAY"] ?? DateTime.now();
+
+    Timestamp? birthdaytprovisoire = map["BIRTHDAY"];
+    if(birthdaytprovisoire == null){
+      birthday = DateTime.now();
+    }
+    else
+      {
+        birthday = birthdaytprovisoire.toDate();
+      }
+
     avatar = map["AVATAR"] ?? defaultImage;
 
   }

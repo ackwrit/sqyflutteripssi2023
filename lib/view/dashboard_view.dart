@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ipssisqy2023/controller/all_utilisateur.dart';
+import 'package:ipssisqy2023/controller/mes_favoris.dart';
 import 'package:ipssisqy2023/view/my_drawer.dart';
 import 'package:ipssisqy2023/view/resgister_view.dart';
 
@@ -10,6 +12,8 @@ class MyDashBoardView extends StatefulWidget {
 }
 
 class _MyDashBoardViewState extends State<MyDashBoardView> {
+  //variable
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +29,32 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
       ),
       backgroundColor: Colors.purple,
       body: bodyPage(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (index){
+            setState(() {
+              currentIndex = index;
+            });
+        },
+        items: const [
+          BottomNavigationBarItem(
+              icon:  Icon(Icons.person),
+            label: "Utilisateurs"
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite),
+              label: "Mes amis"
+          ),
+        ],
+      ),
     );
   }
 
   Widget bodyPage(){
-    return Text("Ma body Page");
+    switch(currentIndex){
+      case 0 : return const AllUsers();
+      case 1 : return const MyFavorites();
+      default: return const Text("Probleme d'affichage");
+    }
   }
 }
