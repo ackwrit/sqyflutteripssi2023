@@ -16,8 +16,8 @@ class _MyFavoritesState extends State<MyFavorites> {
   @override
   void initState() {
     // TODO: implement initState
-    for(int index in me.favoris!){
-      FirestoreHelper().getUser(me.favoris![index]).then((value){
+    for(String uid in me.favoris!){
+      FirestoreHelper().getUser(uid).then((value){
         setState(() {
           maListeAmis.add(value);
         });
@@ -29,11 +29,13 @@ class _MyFavoritesState extends State<MyFavorites> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      padding: const EdgeInsets.all(10),
       itemCount: maListeAmis.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,crossAxisSpacing: 5,mainAxisSpacing: 5),
         itemBuilder: (context,index){
         MyUser otherUser = maListeAmis[index];
           return Container(
+            padding: const EdgeInsets.all(10),
            decoration: BoxDecoration(
              color: Colors.amberAccent,
              borderRadius: BorderRadius.circular(15)
@@ -42,10 +44,10 @@ class _MyFavoritesState extends State<MyFavorites> {
               child: Column(
                 children: [
                   CircleAvatar(
-                    radius: 80,
-                    backgroundImage: NetworkImage(otherUser.avatar ?? defaultImage),
+                    radius: 30,
+                    backgroundImage: NetworkImage(otherUser.avatar ?? defaultImage,),
                   ),
-                  Text(otherUser.fullName,)
+                  Text(otherUser.fullName)
                 ],
               ),
             ),
