@@ -31,7 +31,7 @@ class _MyFavoritesState extends State<MyFavorites> {
     return GridView.builder(
       padding: const EdgeInsets.all(10),
       itemCount: maListeAmis.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,crossAxisSpacing: 5,mainAxisSpacing: 5),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 5,mainAxisSpacing: 5),
         itemBuilder: (context,index){
         MyUser otherUser = maListeAmis[index];
           return Container(
