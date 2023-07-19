@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:ipssisqy2023/view/my_background.dart';
+import 'package:ipssisqy2023/view/resgister_view.dart';
 import 'package:lottie/lottie.dart';
 
 class MyLoading extends StatefulWidget {
@@ -13,25 +17,55 @@ class _MyLoadingState extends State<MyLoading> {
   PageController pageController = PageController();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.linear);
+      if(pageController.page == 2){
+        timer.cancel();
+      }
+
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: PageView(
-        children:[
-          Center(
-            child: Lottie.asset("assets/01.json"),
-          ),
-          Center(
-            child: Lottie.asset("assets/02.json"),
-          ),
-          Center(
-            child: Lottie.asset("assets/03.json"),
-          ),
-        ],
-        controller: pageController,
-
-
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
+      extendBodyBehindAppBar: true,
+      body:
+          PageView(
+              controller: pageController,
+              children:[
+                Center(
+                  child: Lottie.asset("assets/01.json"),
+                ),
+                Center(
+                  child: Lottie.asset("assets/02.json"),
+                ),
+                Center(
+                  child: Lottie.asset("assets/03.json"),
+                ),
+                const MyRegisterView()
+              ],
+
+
+          ),
+
+
+
     );
   }
 }

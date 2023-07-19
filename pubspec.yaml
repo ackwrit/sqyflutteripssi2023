@@ -44,6 +44,8 @@ dependencies:
   file_picker:
   font_awesome_flutter:
   lottie:
+  google_maps_flutter:
+  geolocator:
 
 dev_dependencies:
   flutter_test:

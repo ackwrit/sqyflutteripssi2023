@@ -78,7 +78,7 @@ class _MyRegisterViewState extends State<MyRegisterView> {
         extendBodyBehindAppBar: true,
         body: Stack(
           children: [
-            MyBackground(),
+            const MyBackground(),
             SafeArea(
               child: SingleChildScrollView(
 

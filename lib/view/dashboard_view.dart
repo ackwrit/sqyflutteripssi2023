@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ipssisqy2023/controller/all_utilisateur.dart';
 import 'package:ipssisqy2023/controller/mes_favoris.dart';
 import 'package:ipssisqy2023/view/my_drawer.dart';
+import 'package:ipssisqy2023/view/my_map_view.dart';
 import 'package:ipssisqy2023/view/resgister_view.dart';
 
 class MyDashBoardView extends StatefulWidget {
@@ -45,6 +46,10 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
               icon: Icon(Icons.favorite),
               label: "Mes amis"
           ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.map),
+            label: "carte"
+          )
         ],
       ),
     );
@@ -54,6 +59,7 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
     switch(currentIndex){
       case 0 : return const AllUsers();
       case 1 : return const MyFavorites();
+      case 2 : return const MyMapView();
       default: return const Text("Probleme d'affichage");
     }
   }
